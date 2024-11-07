@@ -10,7 +10,7 @@
 # Example: Word Count
 
 ## MapReduce version
-```
+```python
 # Mapper
 def mapper(line):
     for word in line.split():
@@ -27,7 +27,7 @@ write_output("output.txt", reduced_data)
 ```
 
 ## Spark version
-```
+```python
 from pyspark import SparkContext
 # Initialize Spark context
 sc = SparkContext("local", "WordCount")
