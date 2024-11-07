@@ -1,7 +1,7 @@
 # Steps to convert MapReduce to Spark
 
 - Identify the map and reduce tasks in MapReduce
-- Load data with Spark to RDD
+- Load data with Spark
 - Transform Data:
   - Map Phase: Use transformations like map(), flatMap(), or filter() to replicate the behavior of the Map phase in MapReduce.
   - Shuffle Phase: If your MapReduce job involves shuffling (like grouping), you can use groupByKey() or reduceByKey() in Spark.
