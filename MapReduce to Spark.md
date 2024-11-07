@@ -15,10 +15,14 @@
 def mapper(line):
     for word in line.split():
         emit(word, 1)
+
+
 # Reducer
 def reducer(word, counts):
     total = sum(counts)
     emit(word, total)
+
+
 # Driver code
 input_data = read_input("input.txt")
 mapped_data = map(mapper, input_data)
@@ -29,19 +33,24 @@ write_output("output.txt", reduced_data)
 ## Spark version
 ```python
 from pyspark import SparkContext
+
 # Initialize Spark context
 sc = SparkContext("local", "WordCount")
+
 # Load data
 input_data = sc.textFile("input.txt")
+
 # Transform data: Map phase
 # Split lines into words and create a pair RDD (word, 1)
-word_counts = input_data.flatMap(lambda line: line.split()) \
-                         .map(lambda word: (word, 1))
+word_counts = input_data.flatMap(lambda line: line.split()).map(lambda word: (word, 1))
+
 # Shuffle phase and Reduce phase
 # Reduce by key (word) to count occurrences
 reduced_word_counts = word_counts.reduceByKey(lambda a, b: a + b)
+
 # Collect results and write to output
 reduced_word_counts.saveAsTextFile("output.txt")
+
 # Stop the Spark context
 sc.stop()
 ```
